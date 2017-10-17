@@ -1,0 +1,27 @@
+{
+  "name": "chrome-extension-typescript-starter",
+  "version": "1.0.0",
+  "description": "chrome-extension-typescript-starter",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chibat/chrome-extension-typescript-starter.git"
+  },
+  "dependencies": {
+    "jquery": "~3.2.1",
+    "moment": "~2.18.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "~0.0.49",
+    "@types/jquery": "~3.2.13",
+    "ts-loader": "~2.3.7",
+    "typescript": "~2.5.3",
+    "webpack": "~3.7.0"
+  }
+}
