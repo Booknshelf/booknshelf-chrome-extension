@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Chrome Extension TypeScript Starter",
-  "description": "Chrome Extension, TypeScript, Visual Studio Code",
+  "name": "Booknshelf Chrome Extension",
+  "description": "Save to Booknshelf in a single click!",
   "version": "1.0",
 
   "options_ui": {
@@ -11,8 +11,7 @@
   },
 
   "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "icon.png"
   },
 
   "content_scripts": [
@@ -28,6 +27,7 @@
 
   "permissions": [
     "storage",
+    "contextMenus",
     "<all_urls>"
   ]
 }
