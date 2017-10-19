@@ -1,59 +1,46 @@
-# Chrome Extension TypeScript Starter
+# Booknshelf Chrome Extension
 
-Chrome Extension, TypeScript and Visual Studio Code
+### Dependencies
 
-## Prerequisites
+* [node + npm](https://nodejs.org/)
+* (Optional) [Visual Studio Code](https://code.visualstudio.com/)
 
-* [node + npm](https://nodejs.org/) (Current Version)
+### Building the extension
 
-## Option
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* Moment.js
-* jQuery
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
-## Project Structure
-
-* src: TypeScript source files
-* dist: Chrome Extension directory
-* dist/js: Generated JavaScript files
-
-## Setup
-
+Download dependencies
 ```
 npm install
 ```
-
-## Import as Visual Studio Code project
-
-...
-
-## Build by watch mode
-
-### terminal
-
+Open in Visual Studio Code project
+```
+File > Open Folder
+```
+Build in watch mode
+using either terminal
 ```
 npm run build
 ```
-
-### Visual Studio Code
-
-Run watch mode.
-
+or using Visual Studio Code
+```
 type `Ctrl + Shift + B`
+```
+Load extension to chrome
+* Open `chrome://extensions`
+* Enable `Developer mode` checkbox
+* Click `Load unpacked extension...`
+* Load `dist` directory
 
-## Load extension to chrome
+### Project Structure
+```
+├── .vscode                     # Visual Studio settings
+├── dist                        # Chrome Extension directory
+│   ├── js                      # Generated JavaScript files
+│   └── manifest.json           # Extension Manifest file
+├── package.json                # Npm package declaration
+├── src                         # Src files
+├── tsconfig.json               # TS to JS preferences
+└── webpack.config.js           # Webpack settings
+```
 
-Load `dist` directory
-
+### Attribution
+This project is based on [Chibat's Extension TypeScript Starter](https://github.com/chibat/chrome-extension-typescript-starter.git)
