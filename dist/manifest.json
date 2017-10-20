@@ -12,13 +12,13 @@
   },
 
   "background": {
-    "scripts": ["js/vendor.js", "js/background.js"]
+    "scripts": ["js/background.js"]
   },
 
   "content_scripts": [
       {
           "matches": ["<all_urls>"],
-          "js": ["js/vendor.js", "js/content_script.js"]
+          "js": ["js/content_script.js"]
       }
   ],
 
@@ -27,5 +27,5 @@
     "chrome_style": true
   },
 
-  "web_accessible_resources": ["frame.html", "js/vendor.js", "js/frame.js"]
+  "web_accessible_resources": ["frame.html", "js/frame.js"]
 }

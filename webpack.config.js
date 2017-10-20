@@ -7,7 +7,6 @@ module.exports = {
         content_script: path.join(__dirname, 'src/content_script.ts'),
         background: path.join(__dirname, 'src/background.ts'),
         frame: path.join(__dirname, 'src/frame.ts'),
-        vendor: ['jquery']
     },
     output: {
         path: path.join(__dirname, 'dist/js'),
@@ -24,11 +23,6 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js']
     },
     plugins: [
-        // pack common vender files
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks: Infinity
-        }),
         // minify
         // new webpack.optimize.UglifyJsPlugin()
     ]
