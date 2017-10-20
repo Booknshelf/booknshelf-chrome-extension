@@ -4,9 +4,9 @@ const path = require('path');
 module.exports = {
     entry: {
         options: path.join(__dirname, 'src/options.ts'),
-        popup: path.join(__dirname, 'src/popup.ts'),
         content_script: path.join(__dirname, 'src/content_script.ts'),
         background: path.join(__dirname, 'src/background.ts'),
+        frame: path.join(__dirname, 'src/frame.ts'),
         vendor: ['jquery']
     },
     output: {

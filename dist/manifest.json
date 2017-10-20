@@ -3,15 +3,16 @@
 
   "name": "Booknshelf Chrome Extension",
   "description": "Save to Booknshelf in a single click!",
-  "version": "1.0",
+  "version": "0.1",
 
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  },
+  "permissions": ["tabs", "contextMenus"],
 
   "browser_action": {
     "default_icon": "icon.png"
+  },
+
+  "background": {
+    "scripts": ["js/vendor.js", "js/background.js"]
   },
 
   "content_scripts": [
@@ -21,12 +22,10 @@
       }
   ],
 
-  "background": {
-    "scripts": ["js/vendor.js", "js/background.js"]
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
   },
 
-  "permissions": [
-    "activeTab",
-    "contextMenus"
-  ]
+  "web_accessible_resources": ["frame.html", "js/vendor.js", "js/frame.js"]
 }
