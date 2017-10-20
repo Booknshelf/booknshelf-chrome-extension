@@ -5,7 +5,7 @@ focus();
 let listener = function() {
   console.log("clicked outside");
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {trigger: Trigger.hide_iframe});
+    chrome.tabs.sendMessage(tabs[0].id, {trigger: Trigger.click_outside});
   });
 }
 window.addEventListener('blur', listener);
