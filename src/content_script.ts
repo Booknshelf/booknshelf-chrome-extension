@@ -1,7 +1,7 @@
 import {Trigger} from './constants';
 
 const iframeId = "booknshelf-popup-frame";
-const iframeConstStyle = "height: 224px; width: 370px; " +
+const iframeConstStyle = "height: 400px; width: 500px; " +
                          "margin: 0px; padding: 0px; " +
                          "position: fixed; right: 5px; top: 5px; " +
                          "z-index: 2147483647; display: block !important;";
@@ -39,6 +39,9 @@ chrome.runtime.onMessage.addListener( function(request, sender) {
     }
     case Trigger.selection_menu : {
       console.log(request.selection)
+      // Searching for book using selected text
+      // Show select book screen
+      // Book found, show list screen
       addFrame();
       break;
     }
@@ -46,10 +49,16 @@ chrome.runtime.onMessage.addListener( function(request, sender) {
       if(isFrameAdded())
         removeFrame();
       else
-        addFrame();
+      // Searching for book
+      // Book found, show list screen
+      // Book not found, show error screen
+      addFrame();
       break;
     }
     case Trigger.page_menu: {
+      // Searching for book
+      // Book found, show list screen
+      // Book not found, show error screen
       addFrame();
       break;
     }

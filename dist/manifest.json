@@ -27,7 +27,7 @@
     "chrome_style": true
   },
 
-  "web_accessible_resources": ["frame.html", "js/frame.js"],
+  "web_accessible_resources": ["frame.html", "js/frame.js", "css/loader.css"],
 
   "content_security_policy":"script-src 'self' https://cdn.muicss.com/mui-0.9.27/js/mui.min.js; object-src 'self'"
 }

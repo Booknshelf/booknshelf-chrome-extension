@@ -1,28 +1,51 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.muicss.com/mui-0.9.27/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.muicss.com/mui-0.9.27/js/mui.min.js"></script>
-    <script src="js/frame.js"></script>
-  </head>
-  <body>
-    <div class="mui-container animated bounceInDown" style="padding:15px">
-        <div class="card-example mui--z1">
-            <div class="label">
-              <div>
-                Whitehaven Beach
-              </div>
-              <div>
-                Whitsunday Island, Whitesunday Islands
-              </div>
-            </div>
-            <a class="mui-btn mui-btn--flat mui-btn--accent">Share</a>
-            <a class="mui-btn mui-btn--flat mui-btn--accent">Explore</a>
-         </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/loader.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.muicss.com/mui-0.9.27/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.muicss.com/mui-0.9.27/js/mui.min.js"></script>
+  <script src="js/frame.js"></script>
+</head>
+
+<body style="background-color:transparent">
+  <div id="loading-screen" class="mui--z2" style="background-color: #00b89c; height:85%; width:100%; display:none;">
+    <div class="mui--text-headline mui--text-light mui--text-center" style="padding-top:30px;">
+      <strong id="loading-text">Searching for book...</strong>
     </div>
-  </body>
+    <div class="bookshelf_wrapper">
+      <ul class="books_list">
+        <li class="book_item first"></li>
+        <li class="book_item second"></li>
+        <li class="book_item third"></li>
+        <li class="book_item fourth"></li>
+        <li class="book_item fifth"></li>
+        <li class="book_item sixth"></li>
+      </ul>
+      <div class="shelf"></div>
+    </div>
+  </div>
+  <div id="choose-book-screen" class="mui--z2" style="background-color:white; padding:15px">
+    <div id="query-string" class="mui-panel">Whitehaven Beach</div>
+  </div>
+  <div id="choose-list-screen" class="mui-container" style="display:none;">
+    <div class="mui--z2" style="background-color:white">
+      <div class="label">
+        <div>
+          Whitehaven Beach
+        </div>
+        <div>
+          Whitsunday Island, Whitesunday Islands
+        </div>
+      </div>
+      <a class="mui-btn mui-btn--flat mui-btn--accent">Share</a>
+      <a class="mui-btn mui-btn--flat mui-btn--accent">Explore</a>
+    </div>
+  </div>
+</body>
+
 </html>
