@@ -49,6 +49,7 @@ setTimeout(function () {
       console.log("Book " + book[1] + " saved to " + bookshelf);
       setLoadingScreenText("Saving book...");
       m.mount(document.body, loadingScreen);
+      setTimeout(iframeGrimReaper, 1000);
     })
   })
 }, 2000);

@@ -156,8 +156,7 @@ export let selectBookScreen = {
                 m("tr",
                   [
                     m("td.hover-highlight",
-                      m("div", { style: { "display": "inline-block" } },
-                        { onclick: onClickBook(books[0]) },
+                      m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[0]) } },
                         [
                           m("img.book-image[src='" + books[0][0] + "']"),
                           m(".book-details",
@@ -171,8 +170,7 @@ export let selectBookScreen = {
                       )
                     ),
                     m("td.hover-highlight",
-                      m("div", { style: { "display": "inline-block" } },
-                        { onclick: onClickBook(books[1]) },
+                      m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[1]) } },
                         [
                           m("img.book-image[src='" + books[1][0] + "']"),
                           m(".book-details",
@@ -190,8 +188,7 @@ export let selectBookScreen = {
                 m("tr",
                   [
                     m("td.hover-highlight",
-                      m("div", { style: { "display": "inline-block" } },
-                        { onclick: onClickBook(books[2]) },
+                      m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[2]) } },
                         [
                           m("img.book-image[src='" + books[2][0] + "']"),
                           m(".book-details",
@@ -205,8 +202,7 @@ export let selectBookScreen = {
                       )
                     ),
                     m("td.hover-highlight",
-                      m("div", { style: { "display": "inline-block" } },
-                        { onclick: onClickBook(books[3]) },
+                      m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[3]) } },
                         [
                           m("img.book-image[src='" + books[3][0] + "']"),
                           m(".book-details",
@@ -266,8 +262,7 @@ selectedBook = ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jp
 export function setSelectedBook(newSelectedBook: string[]) {
   selectedBook = newSelectedBook;
 }
-let bookshelfs: string[];
-bookshelfs = ["Completed", "CurrentlyReading", "Books I Have Read", "Books I Want to Read"]
+let bookshelfs: string[] = ["Completed", "CurrentlyReading", "Books I Have Read", "Books I Want to Read"]
 export function setBookshelfs(newBookshelfs: string[]) {
   bookshelfs = newBookshelfs;
 }
@@ -275,15 +270,15 @@ let onClickSave = function (bookshelf) {
   console.log("Book " + selectedBook[1] + " saved to " + bookshelf);
 }
 export function setOnClickSave(callback) {
-  onClickBook = callback;
+  onClickSave = callback;
 }
-let selectedBookshelf: string;
+let selectedBookshelf: string = bookshelfs[0];
 function setSelectedBookshelf(bookshelf) {
   selectedBookshelf = bookshelf;
 }
 let optionsView = []
 bookshelfs.forEach(bookshelf => {
-  optionsView.push(m("option", { onclick: onClickSave(selectedBookshelf) }, bookshelf))
+  optionsView.push(m("option", { onclick: function () { setSelectedBookshelf(bookshelf) } }, bookshelf))
 });
 export let selectListScreen = {
   view: function () {
@@ -319,8 +314,10 @@ export let selectListScreen = {
                     ]
                   ),
                   m("div", { style: { "padding": "5px" } }),
-                  m("button.mui-btn.mui-btn--raised", { style: { "width": "100%" } },
-                    { onclick: onClickSave(selectedBookshelf) },
+                  m("button.mui-btn.mui-btn--raised", {
+                    style: { "width": "100%" },
+                    onclick: function () { onClickSave(selectedBookshelf) }
+                  },
                     "Save"
                   )
                 ]
