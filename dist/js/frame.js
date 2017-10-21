@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,6 +81,270 @@ var Trigger;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const m = __webpack_require__(2);
+/*
+This file provides Mithril Components for screens
+HTML src is designed and converted to js Mithril code using http://arthurclemens.github.io/mithril-template-converter/index.html
+*/
+/* ********************* Loading Screen Src HTML ********************* */
+/*
+  <div id="loading-screen" class="mui--z2" style="background-color: #00b89c; height:85%; width:100%;">
+    <div class="mui--text-headline mui--text-light mui--text-center" style="padding-top:30px;">
+      <strong id="loading-text">Searching for book...</strong>
+    </div>
+    <div class="bookshelf_wrapper">
+      <ul class="books_list">
+        <li class="book_item first"></li>
+        <li class="book_item second"></li>
+        <li class="book_item third"></li>
+        <li class="book_item fourth"></li>
+        <li class="book_item fifth"></li>
+        <li class="book_item sixth"></li>
+      </ul>
+      <div class="shelf"></div>
+    </div>
+  </div>
+*/
+let loadingScreenText = "Searching for book...";
+function setLoadingScreenText(newLoadingScreenText) {
+    loadingScreenText = newLoadingScreenText;
+}
+exports.setLoadingScreenText = setLoadingScreenText;
+exports.loadingScreen = {
+    view: function () {
+        console.log("in loadingScreenView");
+        return m(".mui--z2[id='loading-screen']", { style: { "background-color": "#00b89c", "height": "85%", "width": "100%" } }, [
+            m(".mui--text-headline.mui--text-light.mui--text-center", { style: { "padding-top": "30px" } }, m("strong[id='loading-text']", loadingScreenText)),
+            m(".bookshelf_wrapper", [
+                m("ul.books_list", [
+                    m("li.book_item.first"),
+                    m("li.book_item.second"),
+                    m("li.book_item.third"),
+                    m("li.book_item.fourth"),
+                    m("li.book_item.fifth"),
+                    m("li.book_item.sixth")
+                ]),
+                m(".shelf")
+            ])
+        ]);
+    }
+};
+/* ********************* Select Book Screen Src HTML ********************* */
+/*
+  <div id="choose-book-screen" class="mui--z2" style="background-color:#fafafa; padding:15px;">
+    <div id="book-notice-box" class="mui--text-headline mui--text-center">
+      <p>
+        <strong style="color:#00b89c">Select Book</strong>
+      </p>
+    </div>
+    <div id="query-string" class="mui-panel">fg</div>
+    <div id="list-result-books">
+      <table class="mui-table">
+        <tbody>
+          <tr>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg">
+                <div class="book-details">The Witch-Hunt; or, The Triumph of Morality
+                  <br> by F.G. Bailey</div>
+              </div>
+            </td>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg">
+                <div class="book-details">Dark Resurrection (A Colony Novel)
+                  <br> F.G. Cottam</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg">
+                <div class="book-details">Original Instruction Manual for Nikon FG
+                  <br> by NikonCorp</div>
+              </div>
+            </td>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg">
+                <div class="book-details">Aldin's Wish (Enchanted Immortals Book 1)
+                  <br> by F.G. Adams</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+*/
+let books;
+books = [
+    ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
+        "The Witch-Hunt; or, The Triumph of Morality",
+        "F.G. Bailey"],
+    ["https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg",
+        "Dark Resurrection (A Colony Novel)",
+        "F.G. Cottam"],
+    ["https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg",
+        "Original Instruction Manual for Nikon FG",
+        "NikonCorp"],
+    ["https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg",
+        "Aldin's Wish (Enchanted Immortals Book 1)",
+        "F.G. Adams"],
+];
+function setBooks(newBooks) {
+    books = newBooks;
+}
+exports.setBooks = setBooks;
+let queryString = "fg";
+function setQueryString(newQueryString) {
+    queryString = newQueryString;
+}
+exports.setQueryString = setQueryString;
+let onClickBook = function (book) {
+    console.log("Book clicked : " + book[1]);
+};
+function setOnClickBook(callback) {
+    onClickBook = callback;
+}
+exports.setOnClickBook = setOnClickBook;
+exports.selectBookScreen = {
+    view: function () {
+        return m(".mui--z2[id='choose-book-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } }, [
+            m(".mui--text-headline.mui--text-center[id='book-notice-box']", m("p", m("strong", { style: { "color": "#00b89c" } }, "Select Book"))),
+            m(".mui-panel[id='query-string']", queryString),
+            m("[id='list-result-books']", m("table.mui-table", m("tbody", [
+                m("tr", [
+                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[0]); } }, [
+                        m("img.book-image[src='" + books[0][0] + "']"),
+                        m(".book-details", [
+                            books[0][1],
+                            m("br"),
+                            books[0][2]
+                        ])
+                    ])),
+                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[1]); } }, [
+                        m("img.book-image[src='" + books[1][0] + "']"),
+                        m(".book-details", [
+                            books[1][1],
+                            m("br"),
+                            books[1][2]
+                        ])
+                    ]))
+                ]),
+                m("tr", [
+                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[2]); } }, [
+                        m("img.book-image[src='" + books[2][0] + "']"),
+                        m(".book-details", [
+                            books[2][1],
+                            m("br"),
+                            books[2][2],
+                        ])
+                    ])),
+                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[3]); } }, [
+                        m("img.book-image[src='" + books[3][0] + "']"),
+                        m(".book-details", [
+                            books[3][1],
+                            m("br"),
+                            books[3][2]
+                        ])
+                    ]))
+                ])
+            ])))
+        ]);
+    }
+};
+/* ********************* Select List Screen Src HTML ********************* */
+/*
+  <div id="choose-list-screen" class="mui--z2 animated bounceInDown" style="background-color:#fafafa; padding:15px;">
+    <div id="book-notice-box" class="mui--text-headline mui--text-center">
+      <p>
+        <strong style="color:#00b89c">Select Bookshelf</strong>
+      </p>
+    </div>
+    <div id="list-result-books">
+      <div style="display:inline-block;">
+        <img class="selected-book-image" src="https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg">
+        <div class="selected-book-details">
+          <div style="padding:5px;">The Witch-Hunt; or, The Triumph of Morality</div>
+          <div style="padding:5px;">F.G. Bailey</div>
+          <div class="mui-select" style="margin:5px;">
+            <select>
+              <option>Currently Reading</option>
+              <option>Completed</option>
+              <option>Books I Have Read</option>
+              <option>Books I Want to Read</option>
+            </select>
+            <label>Add Book to:</label>
+          </div>
+          <div style="padding:5px;"></div>
+          <button class="mui-btn mui-btn--raised" style="width:100%">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+*/
+let selectedBook;
+selectedBook = ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
+    "The Witch-Hunt; or, The Triumph of Morality",
+    "F.G. Bailey"];
+function setSelectedBook(newSelectedBook) {
+    selectedBook = newSelectedBook;
+}
+exports.setSelectedBook = setSelectedBook;
+let bookshelfs = ["Completed", "CurrentlyReading", "Books I Have Read", "Books I Want to Read"];
+function setBookshelfs(newBookshelfs) {
+    bookshelfs = newBookshelfs;
+}
+exports.setBookshelfs = setBookshelfs;
+let onClickSave = function (bookshelf) {
+    console.log("Book " + selectedBook[1] + " saved to " + bookshelf);
+};
+function setOnClickSave(callback) {
+    onClickSave = callback;
+}
+exports.setOnClickSave = setOnClickSave;
+let selectedBookshelf = bookshelfs[0];
+function setSelectedBookshelf(bookshelf) {
+    selectedBookshelf = bookshelf;
+}
+let optionsView = [];
+bookshelfs.forEach(bookshelf => {
+    optionsView.push(m("option", { onclick: function () { setSelectedBookshelf(bookshelf); } }, bookshelf));
+});
+exports.selectListScreen = {
+    view: function () {
+        return m(".mui--z2.animated.bounceInDown[id='choose-list-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } }, [
+            m(".mui--text-headline.mui--text-center[id='book-notice-box']", m("p", m("strong", { style: { "color": "#00b89c" } }, "Select Bookshelf"))),
+            m("[id='list-result-books']", m("div", { style: { "display": "inline-block" } }, [
+                m("img.selected-book-image[src='" + selectedBook[0] + "']"),
+                m(".selected-book-details", [
+                    m("div", { style: { "padding": "5px" } }, selectedBook[1]),
+                    m("div", { style: { "padding": "5px" } }, selectedBook[2]),
+                    m(".mui-select", { style: { "margin": "5px" } }, [
+                        m("select", optionsView),
+                        m("label", "Add Book to:")
+                    ]),
+                    m("div", { style: { "padding": "5px" } }),
+                    m("button.mui-btn.mui-btn--raised", {
+                        style: { "width": "100%" },
+                        onclick: function () { onClickSave(selectedBookshelf); }
+                    }, "Save")
+                ])
+            ]))
+        ]);
+    }
+};
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate, global) {;(function() {
@@ -1326,10 +1590,10 @@ m.vnode = Vnode
 if (true) module["exports"] = m
 else window.m = m
 }());
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7).setImmediate, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8).setImmediate, __webpack_require__(3)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1356,20 +1620,20 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = __webpack_require__(0);
-const m = __webpack_require__(1);
-const ui_1 = __webpack_require__(10);
-const ui_2 = __webpack_require__(10);
-const ui_3 = __webpack_require__(10);
+const m = __webpack_require__(2);
+const ui_1 = __webpack_require__(1);
+const ui_2 = __webpack_require__(1);
+const ui_3 = __webpack_require__(1);
 // Listen for clicks outside
 focus();
 let iframeGrimReaper = function () {
@@ -1421,7 +1685,7 @@ console.log("Frame ts loaded with query string: " + decodeURIComponent(queryStri
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -1474,13 +1738,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(8);
+__webpack_require__(9);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -1670,10 +1934,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(10)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1860,270 +2124,6 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const m = __webpack_require__(1);
-/*
-This file provides Mithril Components for screens
-HTML src is designed and converted to js Mithril code using http://arthurclemens.github.io/mithril-template-converter/index.html
-*/
-/* ********************* Loading Screen Src HTML ********************* */
-/*
-  <div id="loading-screen" class="mui--z2" style="background-color: #00b89c; height:85%; width:100%;">
-    <div class="mui--text-headline mui--text-light mui--text-center" style="padding-top:30px;">
-      <strong id="loading-text">Searching for book...</strong>
-    </div>
-    <div class="bookshelf_wrapper">
-      <ul class="books_list">
-        <li class="book_item first"></li>
-        <li class="book_item second"></li>
-        <li class="book_item third"></li>
-        <li class="book_item fourth"></li>
-        <li class="book_item fifth"></li>
-        <li class="book_item sixth"></li>
-      </ul>
-      <div class="shelf"></div>
-    </div>
-  </div>
-*/
-let loadingScreenText = "Searching for book...";
-function setLoadingScreenText(newLoadingScreenText) {
-    loadingScreenText = newLoadingScreenText;
-}
-exports.setLoadingScreenText = setLoadingScreenText;
-exports.loadingScreen = {
-    view: function () {
-        console.log("in loadingScreenView");
-        return m(".mui--z2[id='loading-screen']", { style: { "background-color": "#00b89c", "height": "85%", "width": "100%" } }, [
-            m(".mui--text-headline.mui--text-light.mui--text-center", { style: { "padding-top": "30px" } }, m("strong[id='loading-text']", loadingScreenText)),
-            m(".bookshelf_wrapper", [
-                m("ul.books_list", [
-                    m("li.book_item.first"),
-                    m("li.book_item.second"),
-                    m("li.book_item.third"),
-                    m("li.book_item.fourth"),
-                    m("li.book_item.fifth"),
-                    m("li.book_item.sixth")
-                ]),
-                m(".shelf")
-            ])
-        ]);
-    }
-};
-/* ********************* Select Book Screen Src HTML ********************* */
-/*
-  <div id="choose-book-screen" class="mui--z2" style="background-color:#fafafa; padding:15px;">
-    <div id="book-notice-box" class="mui--text-headline mui--text-center">
-      <p>
-        <strong style="color:#00b89c">Select Book</strong>
-      </p>
-    </div>
-    <div id="query-string" class="mui-panel">fg</div>
-    <div id="list-result-books">
-      <table class="mui-table">
-        <tbody>
-          <tr>
-            <td class="hover-highlight">
-              <div style="display:inline-block;">
-                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg">
-                <div class="book-details">The Witch-Hunt; or, The Triumph of Morality
-                  <br> by F.G. Bailey</div>
-              </div>
-            </td>
-            <td class="hover-highlight">
-              <div style="display:inline-block;">
-                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg">
-                <div class="book-details">Dark Resurrection (A Colony Novel)
-                  <br> F.G. Cottam</div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="hover-highlight">
-              <div style="display:inline-block;">
-                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg">
-                <div class="book-details">Original Instruction Manual for Nikon FG
-                  <br> by NikonCorp</div>
-              </div>
-            </td>
-            <td class="hover-highlight">
-              <div style="display:inline-block;">
-                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg">
-                <div class="book-details">Aldin's Wish (Enchanted Immortals Book 1)
-                  <br> by F.G. Adams</div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-*/
-let books;
-books = [
-    ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
-        "The Witch-Hunt; or, The Triumph of Morality",
-        "F.G. Bailey"],
-    ["https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg",
-        "Dark Resurrection (A Colony Novel)",
-        "F.G. Cottam"],
-    ["https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg",
-        "Original Instruction Manual for Nikon FG",
-        "NikonCorp"],
-    ["https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg",
-        "Aldin's Wish (Enchanted Immortals Book 1)",
-        "F.G. Adams"],
-];
-function setBooks(newBooks) {
-    books = newBooks;
-}
-exports.setBooks = setBooks;
-let queryString = "fg";
-function setQueryString(newQueryString) {
-    queryString = newQueryString;
-}
-exports.setQueryString = setQueryString;
-let onClickBook = function (book) {
-    console.log("Book clicked : " + book[1]);
-};
-function setOnClickBook(callback) {
-    onClickBook = callback;
-}
-exports.setOnClickBook = setOnClickBook;
-exports.selectBookScreen = {
-    view: function () {
-        return m(".mui--z2[id='choose-book-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } }, [
-            m(".mui--text-headline.mui--text-center[id='book-notice-box']", m("p", m("strong", { style: { "color": "#00b89c" } }, "Select Book"))),
-            m(".mui-panel[id='query-string']", queryString),
-            m("[id='list-result-books']", m("table.mui-table", m("tbody", [
-                m("tr", [
-                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[0]); } }, [
-                        m("img.book-image[src='" + books[0][0] + "']"),
-                        m(".book-details", [
-                            books[0][1],
-                            m("br"),
-                            books[0][2]
-                        ])
-                    ])),
-                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[1]); } }, [
-                        m("img.book-image[src='" + books[1][0] + "']"),
-                        m(".book-details", [
-                            books[1][1],
-                            m("br"),
-                            books[1][2]
-                        ])
-                    ]))
-                ]),
-                m("tr", [
-                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[2]); } }, [
-                        m("img.book-image[src='" + books[2][0] + "']"),
-                        m(".book-details", [
-                            books[2][1],
-                            m("br"),
-                            books[2][2],
-                        ])
-                    ])),
-                    m("td.hover-highlight", m("div", { style: { "display": "inline-block" }, onclick: function () { onClickBook(books[3]); } }, [
-                        m("img.book-image[src='" + books[3][0] + "']"),
-                        m(".book-details", [
-                            books[3][1],
-                            m("br"),
-                            books[3][2]
-                        ])
-                    ]))
-                ])
-            ])))
-        ]);
-    }
-};
-/* ********************* Select List Screen Src HTML ********************* */
-/*
-  <div id="choose-list-screen" class="mui--z2 animated bounceInDown" style="background-color:#fafafa; padding:15px;">
-    <div id="book-notice-box" class="mui--text-headline mui--text-center">
-      <p>
-        <strong style="color:#00b89c">Select Bookshelf</strong>
-      </p>
-    </div>
-    <div id="list-result-books">
-      <div style="display:inline-block;">
-        <img class="selected-book-image" src="https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg">
-        <div class="selected-book-details">
-          <div style="padding:5px;">The Witch-Hunt; or, The Triumph of Morality</div>
-          <div style="padding:5px;">F.G. Bailey</div>
-          <div class="mui-select" style="margin:5px;">
-            <select>
-              <option>Currently Reading</option>
-              <option>Completed</option>
-              <option>Books I Have Read</option>
-              <option>Books I Want to Read</option>
-            </select>
-            <label>Add Book to:</label>
-          </div>
-          <div style="padding:5px;"></div>
-          <button class="mui-btn mui-btn--raised" style="width:100%">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-*/
-let selectedBook;
-selectedBook = ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
-    "The Witch-Hunt; or, The Triumph of Morality",
-    "F.G. Bailey"];
-function setSelectedBook(newSelectedBook) {
-    selectedBook = newSelectedBook;
-}
-exports.setSelectedBook = setSelectedBook;
-let bookshelfs = ["Completed", "CurrentlyReading", "Books I Have Read", "Books I Want to Read"];
-function setBookshelfs(newBookshelfs) {
-    bookshelfs = newBookshelfs;
-}
-exports.setBookshelfs = setBookshelfs;
-let onClickSave = function (bookshelf) {
-    console.log("Book " + selectedBook[1] + " saved to " + bookshelf);
-};
-function setOnClickSave(callback) {
-    onClickSave = callback;
-}
-exports.setOnClickSave = setOnClickSave;
-let selectedBookshelf = bookshelfs[0];
-function setSelectedBookshelf(bookshelf) {
-    selectedBookshelf = bookshelf;
-}
-let optionsView = [];
-bookshelfs.forEach(bookshelf => {
-    optionsView.push(m("option", { onclick: function () { setSelectedBookshelf(bookshelf); } }, bookshelf));
-});
-exports.selectListScreen = {
-    view: function () {
-        return m(".mui--z2.animated.bounceInDown[id='choose-list-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } }, [
-            m(".mui--text-headline.mui--text-center[id='book-notice-box']", m("p", m("strong", { style: { "color": "#00b89c" } }, "Select Bookshelf"))),
-            m("[id='list-result-books']", m("div", { style: { "display": "inline-block" } }, [
-                m("img.selected-book-image[src='" + selectedBook[0] + "']"),
-                m(".selected-book-details", [
-                    m("div", { style: { "padding": "5px" } }, selectedBook[1]),
-                    m("div", { style: { "padding": "5px" } }, selectedBook[2]),
-                    m(".mui-select", { style: { "margin": "5px" } }, [
-                        m("select", optionsView),
-                        m("label", "Add Book to:")
-                    ]),
-                    m("div", { style: { "padding": "5px" } }),
-                    m("button.mui-btn.mui-btn--raised", {
-                        style: { "width": "100%" },
-                        onclick: function () { onClickSave(selectedBookshelf); }
-                    }, "Save")
-                ])
-            ]))
-        ]);
-    }
-};
 
 
 /***/ })
