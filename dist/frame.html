@@ -26,6 +26,18 @@
       float: left;
       padding: 5px;
     }
+
+    .selected-book-image {
+      height: 240px;
+      width: 180px;
+      float: left;
+    }
+
+    .selected-book-details {
+      width: 50%;
+      float: left;
+      padding: 15px;
+    }
   </style>
 </head>
 
@@ -46,9 +58,11 @@
       <div class="shelf"></div>
     </div>
   </div>
-  <div id="choose-book-screen" class="mui--z2" style="background-color:#fafafa; padding:15px;">
+  <div id="choose-book-screen" class="mui--z2" style="background-color:#fafafa; padding:15px; display:none;">
     <div id="book-notice-box" class="mui--text-headline mui--text-center">
-      <p><strong style="color:#00b89c">Select Book</strong></p>
+      <p>
+        <strong style="color:#00b89c">Select Book</strong>
+      </p>
     </div>
     <div id="query-string" class="mui-panel">fg</div>
     <div id="list-result-books">
@@ -90,18 +104,31 @@
       </table>
     </div>
   </div>
-  <div id="choose-list-screen" class="mui-container" style="display:none;">
-    <div class="mui--z2" style="background-color:white">
-      <div class="label">
-        <div>
-          Whitehaven Beach
-        </div>
-        <div>
-          Whitsunday Island, Whitesunday Islands
+  <div id="choose-list-screen" class="mui--z2 animated bounceInDown" style="background-color:#fafafa; padding:15px;">
+    <div id="book-notice-box" class="mui--text-headline mui--text-center">
+      <p>
+        <strong style="color:#00b89c">Select Bookshelf</strong>
+      </p>
+    </div>
+    <div id="list-result-books">
+      <div style="display:inline-block;">
+        <img class="selected-book-image" src="https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg">
+        <div class="selected-book-details">
+          <div style="padding:5px;">The Witch-Hunt; or, The Triumph of Morality</div>
+          <div style="padding:5px;">F.G. Bailey</div>
+          <div class="mui-select" style="margin:5px;">
+            <select>
+              <option>Currently Reading</option>
+              <option>Completed</option>
+              <option>Books I Have Read</option>
+              <option>Books I Want to Read</option>
+            </select>
+            <label>Add Book to:</label>
+          </div>
+          <div style="padding:5px;"></div>
+          <button class="mui-btn mui-btn--raised" style="width:100%">Save</button>
         </div>
       </div>
-      <a class="mui-btn mui-btn--flat mui-btn--accent">Share</a>
-      <a class="mui-btn mui-btn--flat mui-btn--accent">Explore</a>
     </div>
   </div>
 </body>
