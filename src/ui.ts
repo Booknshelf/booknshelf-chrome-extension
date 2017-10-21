@@ -25,8 +25,8 @@ HTML src is designed and converted to js Mithril code using http://arthurclemens
   </div>
 */
 export let loadingScreenText = "Searching for book..."
-export function setLoadingScreenText(value: string) {
-  loadingScreenText = value;
+export function setLoadingScreenText(newLoadingScreenText: string) {
+  loadingScreenText = newLoadingScreenText;
 }
 export let loadingScreen = {
   view: function () {
@@ -107,6 +107,28 @@ export let loadingScreen = {
     </div>
   </div>
 */
+export let books: string[][];
+books = [
+  ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
+    "The Witch-Hunt; or, The Triumph of Morality",
+    "F.G. Bailey"],
+  ["https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg",
+    "Dark Resurrection (A Colony Novel)",
+    "F.G. Cottam"],
+  ["https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg",
+    "Original Instruction Manual for Nikon FG",
+    "NikonCorp"],
+  ["https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg",
+    "Aldin's Wish (Enchanted Immortals Book 1)",
+    "F.G. Adams"],
+]
+export function setBooks(newBooks) {
+  books = newBooks;
+}
+export let queryString = "fg";
+export function setQueryString(newQueryString: string) {
+  queryString = newQueryString;
+}
 export let selectBookScreen = {
   view: function () {
     return m(".mui--z2[id='choose-book-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } },
@@ -119,7 +141,7 @@ export let selectBookScreen = {
           )
         ),
         m(".mui-panel[id='query-string']",
-          "fg"
+          queryString,
         ),
         m("[id='list-result-books']",
           m("table.mui-table",
@@ -130,13 +152,12 @@ export let selectBookScreen = {
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
                         [
-                          m("img.book-image[src='https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg']"),
+                          m("img.book-image[src='" + books[0][0] + "']"),
                           m(".book-details",
                             [
-                              "The Witch-Hunt; or, The Triumph of Morality\
-                  ",
+                              books[0][1],
                               m("br"),
-                              " by F.G. Bailey"
+                              books[0][2]
                             ]
                           )
                         ]
@@ -145,13 +166,12 @@ export let selectBookScreen = {
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
                         [
-                          m("img.book-image[src='https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg']"),
+                          m("img.book-image[src='" + books[1][0] + "']"),
                           m(".book-details",
                             [
-                              "Dark Resurrection (A Colony Novel)\
-                  ",
+                              books[1][1],
                               m("br"),
-                              " F.G. Cottam"
+                              books[1][2]
                             ]
                           )
                         ]
@@ -164,13 +184,12 @@ export let selectBookScreen = {
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
                         [
-                          m("img.book-image[src='https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg']"),
+                          m("img.book-image[src='" + books[2][0] + "']"),
                           m(".book-details",
                             [
-                              "Original Instruction Manual for Nikon FG\
-                  ",
+                              books[2][1],
                               m("br"),
-                              " by NikonCorp"
+                              books[2][2],
                             ]
                           )
                         ]
@@ -179,13 +198,12 @@ export let selectBookScreen = {
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
                         [
-                          m("img.book-image[src='https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg']"),
+                          m("img.book-image[src='" + books[3][0] + "']"),
                           m(".book-details",
                             [
-                              "Aldin's Wish (Enchanted Immortals Book 1)\
-                  ",
+                              books[3][1],
                               m("br"),
-                              " by F.G. Adams"
+                              books[3][2]
                             ]
                           )
                         ]
@@ -231,6 +249,23 @@ export let selectBookScreen = {
     </div>
   </div>
 */
+export let selectedBook: string[];
+selectedBook = ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
+  "The Witch-Hunt; or, The Triumph of Morality",
+  "F.G. Bailey"]
+export function setSelectedBook(newSelectedBook: string[]) {
+  selectedBook = newSelectedBook;
+}
+export let bookshelfs: string[];
+bookshelfs = ["Completed", "CurrentlyReading", "Books I Have Read", "Books I Want to Read"]
+export function setBookshelfs(newBookshelfs: string[]) {
+  bookshelfs = newBookshelfs;
+}
+let optionsView = []
+bookshelfs.forEach(bookshelf => {
+  optionsView.push(m("option", bookshelf))
+});
+
 export let selectListScreen = {
   view: function () {
     return m(".mui--z2.animated.bounceInDown[id='choose-list-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } },
@@ -245,32 +280,19 @@ export let selectListScreen = {
         m("[id='list-result-books']",
           m("div", { style: { "display": "inline-block" } },
             [
-              m("img.selected-book-image[src='https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg']"),
+              m("img.selected-book-image[src='" + selectedBook[0] + "']"),
               m(".selected-book-details",
                 [
                   m("div", { style: { "padding": "5px" } },
-                    "The Witch-Hunt; or, The Triumph of Morality"
+                    selectedBook[1]
                   ),
                   m("div", { style: { "padding": "5px" } },
-                    "F.G. Bailey"
+                    selectedBook[2]
                   ),
                   m(".mui-select", { style: { "margin": "5px" } },
                     [
                       m("select",
-                        [
-                          m("option",
-                            "Currently Reading"
-                          ),
-                          m("option",
-                            "Completed"
-                          ),
-                          m("option",
-                            "Books I Have Read"
-                          ),
-                          m("option",
-                            "Books I Want to Read"
-                          )
-                        ]
+                        optionsView
                       ),
                       m("label",
                         "Add Book to:"

@@ -1,7 +1,9 @@
 import { Trigger } from './constants';
 import * as m from 'mithril';
-import { loadingScreen, selectBookScreen, selectListScreen } from './ui';
-import { loadingScreenText, setLoadingScreenText } from './ui';
+import { loadingScreen, setLoadingScreenText } from './ui';
+import { selectBookScreen, setBooks, setQueryString } from './ui';
+import { selectListScreen, setSelectedBook, setBookshelfs } from './ui';
+
 // Listen for clicks outside
 focus();
 let iframeGrimReaper = function () {
@@ -11,26 +13,7 @@ let iframeGrimReaper = function () {
   });
 }
 window.addEventListener('blur', iframeGrimReaper);
-
-let count = 0;
-let Hello = {
-  view: function () {
-    return m("main", [
-      m("h1", { class: "title" }, "My first app"),
-      // changed the next line
-      m("button", { onclick: function () { count++ } }, count + " clicks"),
-    ])
-  }
-}
-
-// Define routes (eg. frame.html#!/loading) to open from content_script
-m.route(document.body, "/loading", {
-  "/loading": loadingScreen,
-  "/selectBook": selectBookScreen,
-  "/selectList": selectListScreen
-})
-console.log("Frame js loaded");
-/*
-class="animated bounceInDown"
-*/
-setLoadingScreenText("boga boga boga");
+// Get Query String set by content_script
+let queryString = document.URL.substring(document.URL.indexOf('?')+1);
+m.mount(document.body, loadingScreen);
+console.log("Frame ts loaded with query string: " + decodeURIComponent(queryString));

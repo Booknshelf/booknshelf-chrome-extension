@@ -5,7 +5,7 @@
   "description": "Save to Booknshelf in a single click!",
   "version": "0.1",
 
-  "permissions": ["tabs", "contextMenus"],
+  "permissions": ["activeTab", "contextMenus"],
 
   "browser_action": {
     "default_icon": "icon.png"
