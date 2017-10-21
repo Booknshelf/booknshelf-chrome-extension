@@ -1,7 +1,7 @@
 import {Trigger} from './constants';
 
 const iframeId = "booknshelf-popup-frame";
-const iframeConstStyle = "height: 400px; width: 500px; " +
+const iframeConstStyle = "height: 500px; width: 500px; " +
                          "margin: 0px; padding: 0px; " +
                          "position: fixed; right: 5px; top: 5px; " +
                          "z-index: 2147483647; display: block !important;";

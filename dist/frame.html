@@ -10,9 +10,26 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.muicss.com/mui-0.9.27/js/mui.min.js"></script>
   <script src="js/frame.js"></script>
+  <style>
+    .hover-highlight:hover {
+      background-color: rgba(00, 00, 00, 0.1);
+    }
+
+    .book-image {
+      height: 120px;
+      width: 90px;
+      float: left;
+    }
+
+    .book-details {
+      width: 50%;
+      float: left;
+      padding: 5px;
+    }
+  </style>
 </head>
 
-<body style="background-color:transparent">
+<body style="background-color:transparent;">
   <div id="loading-screen" class="mui--z2" style="background-color: #00b89c; height:85%; width:100%; display:none;">
     <div class="mui--text-headline mui--text-light mui--text-center" style="padding-top:30px;">
       <strong id="loading-text">Searching for book...</strong>
@@ -29,8 +46,49 @@
       <div class="shelf"></div>
     </div>
   </div>
-  <div id="choose-book-screen" class="mui--z2" style="background-color:white; padding:15px">
-    <div id="query-string" class="mui-panel">Whitehaven Beach</div>
+  <div id="choose-book-screen" class="mui--z2" style="background-color:#fafafa; padding:15px;">
+    <div id="book-notice-box" class="mui--text-headline mui--text-center">
+      <p><strong style="color:#00b89c">Select Book</strong></p>
+    </div>
+    <div id="query-string" class="mui-panel">fg</div>
+    <div id="list-result-books">
+      <table class="mui-table">
+        <tbody>
+          <tr>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg">
+                <div class="book-details">The Witch-Hunt; or, The Triumph of Morality
+                  <br> by F.G. Bailey</div>
+              </div>
+            </td>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51sEAEJoVIL.jpg">
+                <div class="book-details">Dark Resurrection (A Colony Novel)
+                  <br> F.G. Cottam</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/41D8TD5kH0L.jpg">
+                <div class="book-details">Original Instruction Manual for Nikon FG
+                  <br> by NikonCorp</div>
+              </div>
+            </td>
+            <td class="hover-highlight">
+              <div style="display:inline-block;">
+                <img class="book-image" src="https://images-na.ssl-images-amazon.com/images/I/51tRM5d4uGL.jpg">
+                <div class="book-details">Aldin's Wish (Enchanted Immortals Book 1)
+                  <br> by F.G. Adams</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div id="choose-list-screen" class="mui-container" style="display:none;">
     <div class="mui--z2" style="background-color:white">
