@@ -24,7 +24,7 @@ HTML src is designed and converted to js Mithril code using http://arthurclemens
     </div>
   </div>
 */
-export let loadingScreenText = "Searching for book..."
+let loadingScreenText = "Searching for book..."
 export function setLoadingScreenText(newLoadingScreenText: string) {
   loadingScreenText = newLoadingScreenText;
 }
@@ -107,7 +107,7 @@ export let loadingScreen = {
     </div>
   </div>
 */
-export let books: string[][];
+let books: string[][];
 books = [
   ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
     "The Witch-Hunt; or, The Triumph of Morality",
@@ -125,9 +125,15 @@ books = [
 export function setBooks(newBooks) {
   books = newBooks;
 }
-export let queryString = "fg";
+let queryString = "fg";
 export function setQueryString(newQueryString: string) {
   queryString = newQueryString;
+}
+let onClickBook = function (book: string[]) {
+  console.log("Book clicked : " + book[1]);
+}
+export function setOnClickBook(callback) {
+  onClickBook = callback;
 }
 export let selectBookScreen = {
   view: function () {
@@ -151,6 +157,7 @@ export let selectBookScreen = {
                   [
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
+                        { onclick: onClickBook(books[0]) },
                         [
                           m("img.book-image[src='" + books[0][0] + "']"),
                           m(".book-details",
@@ -165,6 +172,7 @@ export let selectBookScreen = {
                     ),
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
+                        { onclick: onClickBook(books[1]) },
                         [
                           m("img.book-image[src='" + books[1][0] + "']"),
                           m(".book-details",
@@ -183,6 +191,7 @@ export let selectBookScreen = {
                   [
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
+                        { onclick: onClickBook(books[2]) },
                         [
                           m("img.book-image[src='" + books[2][0] + "']"),
                           m(".book-details",
@@ -197,6 +206,7 @@ export let selectBookScreen = {
                     ),
                     m("td.hover-highlight",
                       m("div", { style: { "display": "inline-block" } },
+                        { onclick: onClickBook(books[3]) },
                         [
                           m("img.book-image[src='" + books[3][0] + "']"),
                           m(".book-details",
@@ -249,23 +259,32 @@ export let selectBookScreen = {
     </div>
   </div>
 */
-export let selectedBook: string[];
+let selectedBook: string[];
 selectedBook = ["https://images-na.ssl-images-amazon.com/images/I/51iDDR5cQ8L.jpg",
   "The Witch-Hunt; or, The Triumph of Morality",
   "F.G. Bailey"]
 export function setSelectedBook(newSelectedBook: string[]) {
   selectedBook = newSelectedBook;
 }
-export let bookshelfs: string[];
+let bookshelfs: string[];
 bookshelfs = ["Completed", "CurrentlyReading", "Books I Have Read", "Books I Want to Read"]
 export function setBookshelfs(newBookshelfs: string[]) {
   bookshelfs = newBookshelfs;
 }
+let onClickSave = function (bookshelf) {
+  console.log("Book " + selectedBook[1] + " saved to " + bookshelf);
+}
+export function setOnClickSave(callback) {
+  onClickBook = callback;
+}
+let selectedBookshelf: string;
+function setSelectedBookshelf(bookshelf) {
+  selectedBookshelf = bookshelf;
+}
 let optionsView = []
 bookshelfs.forEach(bookshelf => {
-  optionsView.push(m("option", bookshelf))
+  optionsView.push(m("option", { onclick: onClickSave(selectedBookshelf) }, bookshelf))
 });
-
 export let selectListScreen = {
   view: function () {
     return m(".mui--z2.animated.bounceInDown[id='choose-list-screen']", { style: { "background-color": "#fafafa", "padding": "15px" } },
@@ -301,6 +320,7 @@ export let selectListScreen = {
                   ),
                   m("div", { style: { "padding": "5px" } }),
                   m("button.mui-btn.mui-btn--raised", { style: { "width": "100%" } },
+                    { onclick: onClickSave(selectedBookshelf) },
                     "Save"
                   )
                 ]
