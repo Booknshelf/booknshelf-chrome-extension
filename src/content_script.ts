@@ -34,9 +34,6 @@ function addFrame(queryString: string) {
 
 function findBookDetails() {
   let url = document.URL;
-  // remove query and/or anchor
-  if (url.includes('?') || url.includes('#'))
-    url.substring(0, Math.min(url.indexOf('?'), url.indexOf('#')));
   // check known url formats
   if (url.startsWith(GooglePlayBooks))
     return document.getElementsByClassName("document-title")[0].textContent;
